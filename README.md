@@ -13,16 +13,32 @@ An Address Book application which stores Person and Address objects in an in-mem
 # Pre-requisites
 * Java 11
 
+---
+**NOTE**
+
+This application has been developed and tested using Linux Mint 20 & openJDK v11.0.9
+
+---
+
 # Running the application
 
 1. Clone the repository from GitHub
 ```bash
 git clone https://github.com/kburke96/AddressBook.git
 ```
-2. Run the application using the Maven wrapper
+2. Go to the AddressBook folder and run the application using the Maven wrapper
+
+On Unix:
 ```bash
+cd AddressBook
 ./mvnw spring-boot:run
 ```
+On Windows:
+```bash
+cd AddressBook
+mvnw.cmd spring-boot:run
+```
+
 
 # Using the application
 When the application loads, the user is presented with a menu interface. 
@@ -49,6 +65,7 @@ This application was developed over about 4 hours so some bugs exist.
 
 These include:
 * The delete address option (6) does not work. This is due to the Address and Person objects being tightly coupled with a One to One mapping. When option 6 is selected, a message is displayed to gracefully let the user know that this option is not yet supported.
+* If a string with more than one word is entered in any of the Address fields, the next field will be left blank. This is due to user input being read with the Scanner.
 
 
 # Future Enhancements
@@ -56,4 +73,4 @@ These include:
 * Add a Many-to-One relationship between Address and Person, as per the requirements.
 * The current architecture of the project lends itself to being easily enhanced in future. For example:
     * A persistent data storage option, such as PostgresQL or MongoDB, could be added in place of HSQL. Because JPA is used, the code that is accessing the database would not need to be changed. 
-    * A Controller layer could be added to turn this application into a web service (REST or RPC). Communicating via HTTP and JSON would allow multiple remote clients to access and update the data stored. 
+    * A Controller layer could be added to turn this application into a web service (REST or RPC). Communicating via HTTP and JSON would allow multiple remote clients to access and update the data stored. This approach would also allow a more modern frontend/user interface to be developed alongside this backend.
